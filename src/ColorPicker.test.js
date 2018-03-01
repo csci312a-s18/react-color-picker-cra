@@ -20,9 +20,13 @@ it('Updates background color', () => {
   expect(colorPicker.find(ColorBox)).toHaveStyleRule('background', 'rgb(100,100,100)');
 
   // The numeric values should be updated
-  const values = colorPicker.find('span');
+  const values = colorPicker.find('input').filter({ type: 'number' });
   expect(values).toHaveLength(3);
   values.forEach((value) => {
-    expect(value.text()).toBe('100');
+    expect(value.prop('value')).toBe('100');
+    value.simulate('change', { target: { value: '50' } });
   });
+
+  // The color box background should be set to numeric values
+  expect(colorPicker.find(ColorBox)).toHaveStyleRule('background', 'rgb(50,50,50)');
 });
