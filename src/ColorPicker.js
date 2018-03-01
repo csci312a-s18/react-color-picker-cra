@@ -33,7 +33,7 @@ function LabeledSlider(props) {
         max="255"
         value={props.value}
         onChange={event => props.valueChange(event.target.value)}
-      ></input>
+      />
     </div>
   );
 }
